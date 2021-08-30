@@ -43,13 +43,7 @@ class UserContact extends Controller
             'email_1'=>'required',
             'mobile_1'=>'required'
         ]);
-        //dd("em2".$request->email_2);
-        if($request->email_2 == ''){
-            $request->email_2 = null;
-        }
-        if($request->mobile_2 == ''){
-            $request->mobile_2 = null;
-        }
+
         $newUserContact=new UserContacts($request->only('name', 'email_1', 'email_2', 'mobile_1', 'mobile_2',));
         $newUserContact->created_at = date('Y-m-d H:i:s'); 
         $newUserContact->save();
@@ -63,7 +57,8 @@ class UserContact extends Controller
      */
     public function show($id)
     {
-        //
+        $showUserContact=UserContacts::where('id',$id)->get();
+        return $showUserContact;
     }
 
     /**
@@ -72,9 +67,9 @@ class UserContact extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function findUser(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -86,7 +81,14 @@ class UserContact extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateUserContact=UserContacts::findOrFail($id);
+        $updateUserContact->name = $request->name;
+        $updateUserContact->email_1 = $request->email_1;
+        $updateUserContact->email_2 = $request->email_2;
+        $updateUserContact->mobile_1 = $request->mobile_1;
+        $updateUserContact->mobile_2 = $request->mobile_2;
+        $updateUserContact->updated_at = date('Y-m-d H:i:s'); 
+        $updateUserContact->save();
     }
 
     /**
@@ -98,5 +100,6 @@ class UserContact extends Controller
     public function destroy($id)
     {
         //
+        $deleteUserContact=UserContacts::where('id',$id)->delete();
     }
 }

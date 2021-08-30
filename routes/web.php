@@ -19,3 +19,6 @@ use App\Http\Controllers\UserContact;
 
 //user contact route
 Route::get('add-user-contact', [UserContact::class, 'store']);
+Route::get('view-user-contact/{id}', [UserContact::class, 'show']);
+Route::get('update-user-contact/{id}', [UserContact::class, 'update']);
+Route::get('delete-user-contact/{id}', [UserContact::class, 'destroy']);
