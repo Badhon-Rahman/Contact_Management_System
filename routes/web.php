@@ -17,8 +17,16 @@ use App\Http\Controllers\UserContact;
 //     return view('welcome');
 // });
 
-//user contact route
-Route::get('add-user-contact', [UserContact::class, 'store']);
-Route::get('view-user-contact/{id}', [UserContact::class, 'show']);
-Route::get('update-user-contact/{id}', [UserContact::class, 'update']);
-Route::get('delete-user-contact/{id}', [UserContact::class, 'destroy']);
+//group routes
+Route::get('add-group', [GroupController::class, 'store']);
+Route::get('view-group/{id}', [GroupController::class, 'show']);
+Route::get('update-group/{id}', [GroupController::class, 'update']);
+Route::get('delete-group/{id}', [GroupController::class, 'destroy']);
+
+//user contact routes
+Route::get('add-user-contact', [UserContactController::class, 'store']);
+Route::get('view-user-contact/{id}', [UserContactController::class, 'show']);
+Route::get('update-user-contact/{id}', [UserContactController::class, 'update']);
+Route::get('delete-user-contact/{id}', [UserContactController::class, 'destroy']);
+
+

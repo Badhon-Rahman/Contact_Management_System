@@ -20,6 +20,9 @@ class CreateUserContactsTable extends Migration
             $table->string('email_2')->nullable();
             $table->string('mobile_1');
             $table->string('mobile_2')->nullable();
+            $table->unsignedBigInteger('group_id');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->boolean('isFavorite');
             $table->timestamps();
         });
     }

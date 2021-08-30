@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\UserContacts;
 
-class UserContact extends Controller
+class UserContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,7 @@ class UserContact extends Controller
             'mobile_1'=>'required'
         ]);
 
-        $newUserContact=new UserContacts($request->only('name', 'email_1', 'email_2', 'mobile_1', 'mobile_2',));
+        $newUserContact=new UserContacts($request->only('name', 'email_1', 'email_2', 'mobile_1', 'mobile_2', 'group_id', 'isFavorite'));
         $newUserContact->created_at = date('Y-m-d H:i:s'); 
         $newUserContact->save();
     }
@@ -87,6 +87,8 @@ class UserContact extends Controller
         $updateUserContact->email_2 = $request->email_2;
         $updateUserContact->mobile_1 = $request->mobile_1;
         $updateUserContact->mobile_2 = $request->mobile_2;
+        $updateUserContact->group_id = $request->group_id;
+        $updateUserContact->isFavorite = $request->isFavorite;
         $updateUserContact->updated_at = date('Y-m-d H:i:s'); 
         $updateUserContact->save();
     }
